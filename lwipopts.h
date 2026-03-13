@@ -7,4 +7,6 @@
 // This example uses a common include to avoid repetition
 #include "lwipopts_examples_common.h"
 
+#define MEMP_NUM_RAW_PCB 4
+
 #endif
