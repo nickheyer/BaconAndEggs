@@ -151,12 +151,12 @@ static void config_load_defaults(void) {
     strncpy(buf, DEFAULT_SERVERS, sizeof(buf) - 1);
     buf[sizeof(buf) - 1] = '\0';
 
-    char *entry = strtok(buf, ";");
-    while (entry && config.server_count < MAX_SERVERS) {
-        char *eq = strchr(entry, '=');
+    char *tok = strtok(buf, "|");
+    while (tok && config.server_count < MAX_SERVERS) {
+        char *eq = strchr(tok, '=');
         if (eq) {
             *eq = '\0';
-            const char *name = entry;
+            const char *name = tok;
             char *mac_str = eq + 1;
 
             // Check for optional IP after comma: name=MAC,IP
@@ -183,7 +183,7 @@ static void config_load_defaults(void) {
                 printf("Bad MAC for default '%s': %s\n", name, mac_str);
             }
         }
-        entry = strtok(NULL, ";");
+        tok = strtok(NULL, "|");
     }
 }
 
