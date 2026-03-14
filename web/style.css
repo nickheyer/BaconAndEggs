@@ -1,0 +1,44 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f0f1a;color:#e0e0e0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:16px;max-width:800px;margin:0 auto}
+header{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #2a2a3e;margin-bottom:16px}
+h1{color:#e94560;font-size:1.4em}
+h2{font-size:1.1em;margin-bottom:8px}
+h2.clickable{cursor:pointer;user-select:none}
+h2.clickable:hover{color:#e94560}
+#info{font-size:.8em;color:#888;text-align:right}
+#info span{display:block}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:16px}
+.card{background:#1a1a2e;border-radius:8px;padding:12px;border:1px solid #2a2a3e}
+.card h3{font-size:.95em;margin-bottom:4px}
+.card .mac,.card .ip{font-family:"SF Mono",Monaco,Consolas,monospace;font-size:.8em;color:#888}
+.card .state{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.75em;font-weight:600;margin:6px 0}
+.state-up{background:#00b894;color:#000}
+.state-down{background:#636e72;color:#fff}
+.state-waking{background:#fdcb6e;color:#000;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.card .actions{display:flex;gap:6px;margin-top:8px}
+
+.btn{background:#e94560;color:#fff;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-size:.85em}
+.btn:hover{background:#c0392b}
+.btn-sm{font-size:.75em;padding:4px 10px}
+.btn-secondary{background:#2a2a3e}
+.btn-secondary:hover{background:#3a3a4e}
+.btn-accent{background:#e94560}
+.btn-danger{background:#e74c3c}
+.btn-danger:hover{background:#c0392b}
+
+.panel{background:#1a1a2e;border-radius:8px;padding:16px;margin-bottom:16px;border:1px solid #2a2a3e}
+.hidden{display:none}
+
+input,select{background:#0f0f1a;color:#e0e0e0;border:1px solid #2a2a3e;padding:6px 10px;border-radius:4px;margin:4px 0;font-size:.85em}
+input:focus,select:focus{border-color:#e94560;outline:none}
+
+.setting{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.setting label{min-width:140px;font-size:.85em}
+.row{display:flex;gap:8px;align-items:center;margin-top:8px}
+
+.sched-form{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px}
+#sched-list .sched-item{display:flex;justify-content:space-between;align-items:center;padding:4px 0;font-size:.85em;font-family:monospace}
+
+section{margin-bottom:12px}

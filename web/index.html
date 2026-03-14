@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BaconAndEggs</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+<h1>BaconAndEggs</h1>
+<div id="info">
+  <span id="uptime"></span>
+  <span id="ntp"></span>
+</div>
+</header>
+
+<section id="servers">
+  <h2>Servers <button onclick="togglePanel('add-panel')" class="btn-sm">+ Add</button>
+  <button onclick="wakeAll()" class="btn-sm btn-accent">Wake All</button></h2>
+  <div id="server-grid" class="grid"></div>
+</section>
+
+<div id="add-panel" class="panel hidden">
+  <h3>Add Server</h3>
+  <form onsubmit="addServer(event)">
+    <input id="add-name" placeholder="Name" required>
+    <input id="add-mac" placeholder="MAC (AA:BB:CC:DD:EE:FF)" required>
+    <input id="add-ip" placeholder="IP (optional)">
+    <div class="row">
+      <button type="submit" class="btn">Add</button>
+      <button type="button" class="btn btn-secondary" onclick="discoverMac()">Discover MAC</button>
+    </div>
+  </form>
+</div>
+
+<section>
+  <h2 onclick="togglePanel('sched-panel')" class="clickable">Schedules</h2>
+  <div id="sched-panel" class="panel hidden">
+    <div id="sched-list"></div>
+    <form onsubmit="addSchedule(event)" class="sched-form">
+      <select id="sched-days">
+        <option value="127">Daily</option>
+        <option value="62">Weekdays</option>
+        <option value="65">Weekends</option>
+        <option value="2">Mon</option>
+        <option value="4">Tue</option>
+        <option value="8">Wed</option>
+        <option value="16">Thu</option>
+        <option value="32">Fri</option>
+        <option value="64">Sat</option>
+        <option value="1">Sun</option>
+      </select>
+      <input id="sched-time" type="time" required>
+      <select id="sched-target"></select>
+      <button type="submit" class="btn btn-sm">Add Schedule</button>
+    </form>
+  </div>
+</section>
+
+<section>
+  <h2 onclick="togglePanel('settings-panel')" class="clickable">Settings</h2>
+  <div id="settings-panel" class="panel hidden">
+    <div class="setting">
+      <label>Auto-wake on boot</label>
+      <button id="autowake-btn" onclick="toggleAutowake()"></button>
+    </div>
+    <div class="setting">
+      <label>UTC Offset (minutes)</label>
+      <input id="tz-offset" type="number" style="width:80px">
+      <button class="btn btn-sm" onclick="setTimezone()">Set</button>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 onclick="togglePanel('mqtt-panel')" class="clickable">MQTT</h2>
+  <div id="mqtt-panel" class="panel hidden">
+    <form onsubmit="saveMqtt(event)">
+      <div class="setting">
+        <label>Enabled</label>
+        <input id="mqtt-enabled" type="checkbox">
+      </div>
+      <input id="mqtt-host" placeholder="Host">
+      <input id="mqtt-port" type="number" placeholder="Port" value="1883">
+      <input id="mqtt-user" placeholder="User">
+      <input id="mqtt-pass" type="password" placeholder="Password">
+      <div class="row">
+        <button type="submit" class="btn">Save</button>
+        <span id="mqtt-status"></span>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section>
+  <h2 onclick="togglePanel('webhook-panel')" class="clickable">Webhook</h2>
+  <div id="webhook-panel" class="panel hidden">
+    <form onsubmit="saveWebhook(event)">
+      <div class="setting">
+        <label>Enabled</label>
+        <input id="wh-enabled" type="checkbox">
+      </div>
+      <input id="wh-url" placeholder="URL (e.g. https://ntfy.sh/topic)" style="width:100%">
+      <button type="submit" class="btn">Save</button>
+    </form>
+  </div>
+</section>
+
+<script src="/app.js"></script>
+</body>
+</html>
